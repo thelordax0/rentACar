@@ -6,7 +6,7 @@ import com.springCourse.rentACar.business.requests.CreateBrandRequest;
 import com.springCourse.rentACar.business.requests.UpdateBrandRequest;
 import com.springCourse.rentACar.business.responses.GetAllBrandsResponse;
 import com.springCourse.rentACar.business.responses.GetByIdBrandResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,14 +14,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/brands")
+@AllArgsConstructor
 public class BrandsController {
     private BrandService brandService;
 
 
-    @Autowired
-    public BrandsController(BrandService brandService) {
-        this.brandService = brandService;
-    }
+
 
     @GetMapping()
     public List<GetAllBrandsResponse> getAll(){
