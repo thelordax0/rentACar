@@ -4,25 +4,25 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.Banner;
 
 import java.util.List;
 
-@Table(name="brands")
+@Table(name ="models")
+@Entity
 @Data
 @AllArgsConstructor
-@Entity
 @NoArgsConstructor
-public class Brand {
-
+public class Model {
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
     private int id;
     @Column(name = "name")
     private String name;
-    @OneToMany(mappedBy = "brand")
-    private List<Model> models;
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
 
-
+    @OneToMany(mappedBy = "model")
+    private List<Car> cars;
 }
